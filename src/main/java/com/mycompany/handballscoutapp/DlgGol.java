@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -19,20 +21,38 @@ public class DlgGol extends javax.swing.JDialog {
     private List<String> informacoesGols = new ArrayList<>();
     private boolean acaoExecutada = false;
     private String quadranteChuteFinal;
-    
+    private String timeFinal;
 
-    public DlgGol(boolean modal,String quadranteChute) {
+
+    public DlgGol(boolean modal,String time,String quadranteChute) {
         setTitle("CHUTE: " + quadranteChute); // Exibe o identificador no título
+        timeFinal = time;
         quadranteChuteFinal = quadranteChute;
         initComponents();
     }
     
-    
-    public void imprimirInformacoesGols() {
-    for (String informacao : informacoesGols) {
-        System.out.println(informacao);
+    private String obterHoraAtual() {
+        LocalTime agora = LocalTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return agora.format(formato);
     }
+    
+    private String formatarInformacaoGol(String quadranteGol) {
+        String horaAtual = obterHoraAtual();
+        return "HORA: " + horaAtual + " - " + timeFinal + ": " + quadranteChuteFinal + " -> " + quadranteGol;
 }
+
+    private void criarInformacaoGol(String quadranteGol) {
+        if (!acaoExecutada) {
+            String informacaoGol = formatarInformacaoGol(quadranteGol);
+            informacoesGols.add(informacaoGol);
+            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
+            acaoExecutada = true;
+            this.setVisible(false);
+        }
+    }
+    
+ 
     public void escreverInformacoesEmArquivo(String nomeArquivo) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo,true))) {
         for (String informacao : informacoesGols) {
@@ -44,12 +64,6 @@ public class DlgGol extends javax.swing.JDialog {
         System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
     }
 }
-    public void atualizarTextArea() {
-    for (String informacao : informacoesGols) {
-        edtListagem.append(informacao + "\n"); // Adiciona cada informação como uma linha
-    }
-}
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,11 +83,10 @@ public class DlgGol extends javax.swing.JDialog {
         jBtQuadranteGol7 = new javax.swing.JButton();
         jBtQuadranteGol8 = new javax.swing.JButton();
         jBtQuadranteGol9 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        edtListagem = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
+        setResizable(false);
 
         jBtQuadranteGol1.setText("Q1 GOL");
         jBtQuadranteGol1.addActionListener(new java.awt.event.ActionListener() {
@@ -138,10 +151,6 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
-        edtListagem.setColumns(20);
-        edtListagem.setRows(5);
-        jScrollPane1.setViewportView(edtListagem);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,9 +173,6 @@ public class DlgGol extends javax.swing.JDialog {
                 .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,9 +191,7 @@ public class DlgGol extends javax.swing.JDialog {
                     .addComponent(jBtQuadranteGol7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,103 +199,39 @@ public class DlgGol extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtQuadranteGol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol1ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q1 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            atualizarTextArea();
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q1 GOL");
     }//GEN-LAST:event_jBtQuadranteGol1ActionPerformed
 
     private void jBtQuadranteGol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol2ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q2 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q2 GOL");
     }//GEN-LAST:event_jBtQuadranteGol2ActionPerformed
 
     private void jBtQuadranteGol3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol3ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q3 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q3 GOL");
     }//GEN-LAST:event_jBtQuadranteGol3ActionPerformed
 
     private void jBtQuadranteGol4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol4ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q4 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q4 GOL");
     }//GEN-LAST:event_jBtQuadranteGol4ActionPerformed
 
     private void jBtQuadranteGol5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol5ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q5 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q5 GOL");
     }//GEN-LAST:event_jBtQuadranteGol5ActionPerformed
 
     private void jBtQuadranteGol6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol6ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q6 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q6 GOL");
     }//GEN-LAST:event_jBtQuadranteGol6ActionPerformed
 
     private void jBtQuadranteGol7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol7ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q7 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q7 GOL");
     }//GEN-LAST:event_jBtQuadranteGol7ActionPerformed
 
     private void jBtQuadranteGol8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol8ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q8 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q8 GOL");
     }//GEN-LAST:event_jBtQuadranteGol8ActionPerformed
 
     private void jBtQuadranteGol9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol9ActionPerformed
-        if (!acaoExecutada) { // Verifica se a ação já foi executada
-            String quadranteGol = "Q9 GOL";
-            String informacaoGol = quadranteChuteFinal + " -> " + quadranteGol;
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true; // Define a flag para true
-            this.setVisible(false);
-        }
+        criarInformacaoGol("Q9 GOL");
     }//GEN-LAST:event_jBtQuadranteGol9ActionPerformed
 
     /**
@@ -299,7 +239,6 @@ public class DlgGol extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea edtListagem;
     private javax.swing.JButton jBtQuadranteGol1;
     private javax.swing.JButton jBtQuadranteGol2;
     private javax.swing.JButton jBtQuadranteGol3;
@@ -309,7 +248,6 @@ public class DlgGol extends javax.swing.JDialog {
     private javax.swing.JButton jBtQuadranteGol7;
     private javax.swing.JButton jBtQuadranteGol8;
     private javax.swing.JButton jBtQuadranteGol9;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
 }

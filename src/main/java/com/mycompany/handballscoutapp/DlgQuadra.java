@@ -1,22 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.mycompany.handballscoutapp;
 
 /**
  *
- * @author ifmaker
+ * @author rafae
  */
-public class FrQuadra extends javax.swing.JFrame {
+public class DlgQuadra extends javax.swing.JDialog {
+    private String timeFinal;
+
     /**
-     * Creates new form Quadra
+     * Creates new form DlgQuadra
      */
-    public FrQuadra() {
+    public DlgQuadra(boolean modal,String time) {
+        setTitle("SELECIONE O QUADRANTE DO CHUTE:");
+        timeFinal = time;
         initComponents();
     }
     
-
+    private void criarGol(String quadranteChute) {
+        DlgGol gol = new DlgGol(true, timeFinal, quadranteChute);
+        gol.setVisible(true);
+        this.setVisible(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,26 +35,52 @@ public class FrQuadra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBtQuadranteQuadra9 = new javax.swing.JButton();
-        jBtQuadranteQuadra6 = new javax.swing.JButton();
-        jBtQuadranteQuadra7 = new javax.swing.JButton();
-        jBtQuadranteQuadra8 = new javax.swing.JButton();
+        jBtQuadranteQuadra1 = new javax.swing.JButton();
+        jBtQuadranteQuadra2 = new javax.swing.JButton();
         jBtQuadranteQuadra3 = new javax.swing.JButton();
         jBtQuadranteQuadra4 = new javax.swing.JButton();
         jBtQuadranteQuadra5 = new javax.swing.JButton();
-        jBtQuadranteQuadra1 = new javax.swing.JButton();
-        jBtQuadranteQuadra2 = new javax.swing.JButton();
+        jBtQuadranteQuadra6 = new javax.swing.JButton();
+        jBtQuadranteQuadra7 = new javax.swing.JButton();
+        jBtQuadranteQuadra8 = new javax.swing.JButton();
+        jBtQuadranteQuadra9 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setName("Quadra"); // NOI18N
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(500, 500));
 
-        jBtQuadranteQuadra9.setText("Q9 QUADRA");
-        jBtQuadranteQuadra9.setPreferredSize(new java.awt.Dimension(490, 50));
-        jBtQuadranteQuadra9.addActionListener(new java.awt.event.ActionListener() {
+        jBtQuadranteQuadra1.setText("Q1 QUADRA");
+        jBtQuadranteQuadra1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra9ActionPerformed(evt);
+                jBtQuadranteQuadra1ActionPerformed(evt);
+            }
+        });
+
+        jBtQuadranteQuadra2.setText("Q2 QUADRA");
+        jBtQuadranteQuadra2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtQuadranteQuadra2ActionPerformed(evt);
+            }
+        });
+
+        jBtQuadranteQuadra3.setText("Q3 QUADRA");
+        jBtQuadranteQuadra3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtQuadranteQuadra3ActionPerformed(evt);
+            }
+        });
+
+        jBtQuadranteQuadra4.setText("Q4 QUADRA");
+        jBtQuadranteQuadra4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtQuadranteQuadra4ActionPerformed(evt);
+            }
+        });
+
+        jBtQuadranteQuadra5.setText("Q5 QUADRA");
+        jBtQuadranteQuadra5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtQuadranteQuadra5ActionPerformed(evt);
             }
         });
 
@@ -74,38 +108,11 @@ public class FrQuadra extends javax.swing.JFrame {
             }
         });
 
-        jBtQuadranteQuadra3.setText("Q3 QUADRA");
-        jBtQuadranteQuadra3.addActionListener(new java.awt.event.ActionListener() {
+        jBtQuadranteQuadra9.setText("Q9 QUADRA");
+        jBtQuadranteQuadra9.setPreferredSize(new java.awt.Dimension(490, 50));
+        jBtQuadranteQuadra9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra3ActionPerformed(evt);
-            }
-        });
-
-        jBtQuadranteQuadra4.setText("Q4 QUADRA");
-        jBtQuadranteQuadra4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra4ActionPerformed(evt);
-            }
-        });
-
-        jBtQuadranteQuadra5.setText("Q5 QUADRA");
-        jBtQuadranteQuadra5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra5ActionPerformed(evt);
-            }
-        });
-
-        jBtQuadranteQuadra1.setText("Q1 QUADRA");
-        jBtQuadranteQuadra1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra1ActionPerformed(evt);
-            }
-        });
-
-        jBtQuadranteQuadra2.setText("Q2 QUADRA");
-        jBtQuadranteQuadra2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtQuadranteQuadra2ActionPerformed(evt);
+                jBtQuadranteQuadra9ActionPerformed(evt);
             }
         });
 
@@ -120,7 +127,7 @@ public class FrQuadra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jBtQuadranteQuadra1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtQuadranteQuadra3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtQuadranteQuadra6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                    .addComponent(jBtQuadranteQuadra6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtQuadranteQuadra7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,9 +138,6 @@ public class FrQuadra extends javax.swing.JFrame {
                     .addComponent(jBtQuadranteQuadra5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtQuadranteQuadra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtQuadranteQuadra6, jBtQuadranteQuadra8});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -160,63 +164,46 @@ public class FrQuadra extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtQuadranteQuadra9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra9ActionPerformed
-        String quadranteChute = "Q9 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
-    }//GEN-LAST:event_jBtQuadranteQuadra9ActionPerformed
-
-    private void jBtQuadranteQuadra5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra5ActionPerformed
-        String quadranteChute = "Q5 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
-    }//GEN-LAST:event_jBtQuadranteQuadra5ActionPerformed
-
     private void jBtQuadranteQuadra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra1ActionPerformed
-        String quadranteChute = "Q1 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q1 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra1ActionPerformed
 
     private void jBtQuadranteQuadra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra2ActionPerformed
-        String quadranteChute = "Q2 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q2 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra2ActionPerformed
 
     private void jBtQuadranteQuadra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra3ActionPerformed
-        String quadranteChute = "Q3 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q3 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra3ActionPerformed
 
     private void jBtQuadranteQuadra4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra4ActionPerformed
-        String quadranteChute = "Q4 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q4 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra4ActionPerformed
 
+    private void jBtQuadranteQuadra5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra5ActionPerformed
+        criarGol("Q5 QUADRA");
+    }//GEN-LAST:event_jBtQuadranteQuadra5ActionPerformed
+
     private void jBtQuadranteQuadra6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra6ActionPerformed
-        String quadranteChute = "Q6 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q6 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra6ActionPerformed
 
     private void jBtQuadranteQuadra7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra7ActionPerformed
-        String quadranteChute = "Q7 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q7 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra7ActionPerformed
 
     private void jBtQuadranteQuadra8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra8ActionPerformed
-        String quadranteChute = "Q8 QUADRA";
-        DlgGol gol = new DlgGol(true,quadranteChute);
-        gol.setVisible(true);
+        criarGol("Q8 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra8ActionPerformed
+
+    private void jBtQuadranteQuadra9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra9ActionPerformed
+        criarGol("Q9 QUADRA");
+    }//GEN-LAST:event_jBtQuadranteQuadra9ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtQuadranteQuadra1;

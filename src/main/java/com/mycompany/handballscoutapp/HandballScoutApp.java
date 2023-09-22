@@ -11,7 +11,7 @@ package com.mycompany.handballscoutapp;
 
 public class HandballScoutApp {
     public static void main(String[] args) {
-        FrQuadra tela1 = new FrQuadra();
+        FrHome tela1 = new FrHome();
         tela1.setVisible(true);
 }
 }
