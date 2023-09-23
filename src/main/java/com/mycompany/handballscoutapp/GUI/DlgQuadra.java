@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.mycompany.handballscoutapp;
+package com.mycompany.handballscoutapp.GUI;
+
+import com.mycompany.handballscoutapp.QuadraManager;
+
 
 /**
  *
@@ -10,21 +13,16 @@ package com.mycompany.handballscoutapp;
  */
 public class DlgQuadra extends javax.swing.JDialog {
     private String timeFinal;
+    private QuadraManager quadraManager;
 
-    /**
-     * Creates new form DlgQuadra
-     */
-    public DlgQuadra(boolean modal,String time) {
+    public DlgQuadra(boolean modal, String time) {
         setTitle("SELECIONE O QUADRANTE DO CHUTE:");
         timeFinal = time;
+        quadraManager = new QuadraManager(time); // Instância do QuadraManager
         initComponents();
     }
     
-    private void criarGol(String quadranteChute) {
-        DlgGol gol = new DlgGol(true, timeFinal, quadranteChute);
-        gol.setVisible(true);
-        this.setVisible(false);
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,8 +154,7 @@ public class DlgQuadra extends javax.swing.JDialog {
                         .addComponent(jBtQuadranteQuadra8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jBtQuadranteQuadra7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteQuadra9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(192, 192, 192))
+                .addComponent(jBtQuadranteQuadra9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -165,39 +162,39 @@ public class DlgQuadra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtQuadranteQuadra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra1ActionPerformed
-        criarGol("Q1 QUADRA");
+        quadraManager.criarGol("Q1 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra1ActionPerformed
 
     private void jBtQuadranteQuadra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra2ActionPerformed
-        criarGol("Q2 QUADRA");
+        quadraManager.criarGol("Q2 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra2ActionPerformed
 
     private void jBtQuadranteQuadra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra3ActionPerformed
-        criarGol("Q3 QUADRA");
+        quadraManager.criarGol("Q3 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra3ActionPerformed
 
     private void jBtQuadranteQuadra4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra4ActionPerformed
-        criarGol("Q4 QUADRA");
+        quadraManager.criarGol("Q4 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra4ActionPerformed
 
     private void jBtQuadranteQuadra5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra5ActionPerformed
-        criarGol("Q5 QUADRA");
+        quadraManager.criarGol("Q5 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra5ActionPerformed
 
     private void jBtQuadranteQuadra6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra6ActionPerformed
-        criarGol("Q6 QUADRA");
+        quadraManager.criarGol("Q6 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra6ActionPerformed
 
     private void jBtQuadranteQuadra7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra7ActionPerformed
-        criarGol("Q7 QUADRA");
+        quadraManager.criarGol("Q7 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra7ActionPerformed
 
     private void jBtQuadranteQuadra8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra8ActionPerformed
-        criarGol("Q8 QUADRA");
+        quadraManager.criarGol("Q8 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra8ActionPerformed
 
     private void jBtQuadranteQuadra9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra9ActionPerformed
-        criarGol("Q9 QUADRA");
+        quadraManager.criarGol("Q9 QUADRA");
     }//GEN-LAST:event_jBtQuadranteQuadra9ActionPerformed
 
     /**

@@ -4,6 +4,8 @@
 
 package com.mycompany.handballscoutapp;
 
+import com.mycompany.handballscoutapp.GUI.FrHome;
+
 /**
  *
  * @author ifmaker

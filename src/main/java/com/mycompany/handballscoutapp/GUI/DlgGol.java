@@ -2,69 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.mycompany.handballscoutapp;
+package com.mycompany.handballscoutapp.GUI;
+import com.mycompany.handballscoutapp.GolManager;
+import javax.swing.JOptionPane;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author ifmaker
  */
 public class DlgGol extends javax.swing.JDialog {
-
-    private List<String> informacoesGols = new ArrayList<>();
-    private boolean acaoExecutada = false;
-    private String quadranteChuteFinal;
-    private String timeFinal;
+    private GolManager golManager;
 
 
-    public DlgGol(boolean modal,String time,String quadranteChute) {
-        setTitle("CHUTE: " + quadranteChute); // Exibe o identificador no título
-        timeFinal = time;
-        quadranteChuteFinal = quadranteChute;
-        initComponents();
-    }
+    public DlgGol(boolean modal, String time, String quadranteChute) {
+    setTitle("CHUTE: " + quadranteChute);
+    golManager = new GolManager(time, quadranteChute); // Crie uma instância do GolManager
+    initComponents();
     
-    private String obterHoraAtual() {
-        LocalTime agora = LocalTime.now();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return agora.format(formato);
-    }
-    
-    private String formatarInformacaoGol(String quadranteGol) {
-        String horaAtual = obterHoraAtual();
-        return "HORA: " + horaAtual + " - " + timeFinal + ": " + quadranteChuteFinal + " -> " + quadranteGol;
 }
-
-    private void criarInformacaoGol(String quadranteGol) {
-        if (!acaoExecutada) {
-            String informacaoGol = formatarInformacaoGol(quadranteGol);
-            informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
-            acaoExecutada = true;
-            this.setVisible(false);
-        }
-    }
-    
- 
-    public void escreverInformacoesEmArquivo(String nomeArquivo) {
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo,true))) {
-        for (String informacao : informacoesGols) {
-            writer.write(informacao);
-            writer.newLine(); // Adicionar uma nova linha após cada informação
-        }
-        System.out.println("Informações gravadas em " + nomeArquivo);
-    } catch (IOException e) {
-        System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
-    }
-}
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +30,8 @@ public class DlgGol extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
+        jSlider1 = new javax.swing.JSlider();
         jBtQuadranteGol1 = new javax.swing.JButton();
         jBtQuadranteGol2 = new javax.swing.JButton();
         jBtQuadranteGol3 = new javax.swing.JButton();
@@ -83,6 +41,12 @@ public class DlgGol extends javax.swing.JDialog {
         jBtQuadranteGol7 = new javax.swing.JButton();
         jBtQuadranteGol8 = new javax.swing.JButton();
         jBtQuadranteGol9 = new javax.swing.JButton();
+        jBtCancelarGol = new javax.swing.JButton();
+        jBtTipoChuteDefesa = new javax.swing.JButton();
+        jBtTipoChuteGol = new javax.swing.JButton();
+        jBtTipoChuteFora = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -151,47 +115,102 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
+        jBtCancelarGol.setText("CANCELAR GOL");
+        jBtCancelarGol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCancelarGolActionPerformed(evt);
+            }
+        });
+
+        jBtTipoChuteDefesa.setText("DEFESA");
+        jBtTipoChuteDefesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtTipoChuteDefesaActionPerformed(evt);
+            }
+        });
+
+        jBtTipoChuteGol.setText("GOL");
+        jBtTipoChuteGol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtTipoChuteGolActionPerformed(evt);
+            }
+        });
+
+        jBtTipoChuteFora.setText("FORA");
+        jBtTipoChuteFora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtTipoChuteForaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBtQuadranteGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtTipoChuteDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtTipoChuteGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jBtQuadranteGol4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jBtQuadranteGol7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jBtTipoChuteFora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator2)
+            .addComponent(jSeparator3)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtQuadranteGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtQuadranteGol4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtQuadranteGol7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtCancelarGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtQuadranteGol2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtQuadranteGol2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtQuadranteGol4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtQuadranteGol4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtQuadranteGol7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(138, Short.MAX_VALUE))
+                    .addComponent(jBtQuadranteGol7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jBtTipoChuteFora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtTipoChuteGol, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtTipoChuteDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtCancelarGol, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -199,46 +218,84 @@ public class DlgGol extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtQuadranteGol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol1ActionPerformed
-        criarInformacaoGol("Q1 GOL");
+        golManager.verificarEExecutarAcao("Q1 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol1ActionPerformed
 
     private void jBtQuadranteGol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol2ActionPerformed
-        criarInformacaoGol("Q2 GOL");
+        golManager.verificarEExecutarAcao("Q2 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol2ActionPerformed
 
     private void jBtQuadranteGol3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol3ActionPerformed
-        criarInformacaoGol("Q3 GOL");
+        golManager.verificarEExecutarAcao("Q3 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol3ActionPerformed
 
     private void jBtQuadranteGol4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol4ActionPerformed
-        criarInformacaoGol("Q4 GOL");
+        golManager.verificarEExecutarAcao("Q4 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol4ActionPerformed
 
     private void jBtQuadranteGol5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol5ActionPerformed
-        criarInformacaoGol("Q5 GOL");
+        golManager.verificarEExecutarAcao("Q5 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol5ActionPerformed
 
     private void jBtQuadranteGol6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol6ActionPerformed
-        criarInformacaoGol("Q6 GOL");
+        golManager.verificarEExecutarAcao("Q6 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol6ActionPerformed
 
     private void jBtQuadranteGol7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol7ActionPerformed
-        criarInformacaoGol("Q7 GOL");
+        golManager.verificarEExecutarAcao("Q7 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol7ActionPerformed
 
     private void jBtQuadranteGol8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol8ActionPerformed
-        criarInformacaoGol("Q8 GOL");
+        golManager.verificarEExecutarAcao("Q8 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol8ActionPerformed
 
     private void jBtQuadranteGol9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol9ActionPerformed
-        criarInformacaoGol("Q9 GOL");
+        golManager.verificarEExecutarAcao("Q9 GOL");
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol9ActionPerformed
+
+    private void jBtTipoChuteDefesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTipoChuteDefesaActionPerformed
+        golManager.setTipoChute("DEFESA");
+    }//GEN-LAST:event_jBtTipoChuteDefesaActionPerformed
+
+    private void jBtTipoChuteGolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTipoChuteGolActionPerformed
+        golManager.setTipoChute("GOL");
+    }//GEN-LAST:event_jBtTipoChuteGolActionPerformed
+
+    private void jBtTipoChuteForaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTipoChuteForaActionPerformed
+        golManager.setTipoChute("FORA");    
+    int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME SE O CHUTE FOI PARA FORA:", "CONFIRMAÇÃO DE CHUTE PARA FORA", JOptionPane.YES_NO_OPTION);
+    
+    if (resposta == JOptionPane.YES_OPTION) {
+        golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal());
+
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_jBtTipoChuteForaActionPerformed
+
+    private void jBtCancelarGolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelarGolActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(this, "TEM CERTEZA QUE DESEJA CANCELAR ESTE CHUTE?", "CONFIRMAÇÃO DE CANCELAMENTO", JOptionPane.YES_NO_OPTION);
+    
+    if (resposta == JOptionPane.YES_OPTION) {
+        // O usuário confirmou o cancelamento, volte para a tela inicial.
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_jBtCancelarGolActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtCancelarGol;
     private javax.swing.JButton jBtQuadranteGol1;
     private javax.swing.JButton jBtQuadranteGol2;
     private javax.swing.JButton jBtQuadranteGol3;
@@ -248,6 +305,13 @@ public class DlgGol extends javax.swing.JDialog {
     private javax.swing.JButton jBtQuadranteGol7;
     private javax.swing.JButton jBtQuadranteGol8;
     private javax.swing.JButton jBtQuadranteGol9;
+    private javax.swing.JButton jBtTipoChuteDefesa;
+    private javax.swing.JButton jBtTipoChuteFora;
+    private javax.swing.JButton jBtTipoChuteGol;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
 
 }

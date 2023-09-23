@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JSlider" name="jSlider1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="modal" type="boolean" value="true"/>
@@ -26,25 +32,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jBtQuadranteGol1" min="-2" pref="150" max="-2" attributes="0"/>
+              <Component id="jBtTipoChuteDefesa" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol2" min="-2" pref="150" max="-2" attributes="0"/>
+              <Component id="jBtTipoChuteGol" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol3" min="-2" pref="150" max="-2" attributes="0"/>
+              <Component id="jBtTipoChuteFora" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jBtQuadranteGol4" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol5" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol6" min="-2" pref="150" max="-2" attributes="0"/>
+          <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
+          <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jBtQuadranteGol1" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol2" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol3" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jBtQuadranteGol4" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol5" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol6" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jBtQuadranteGol7" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol8" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtQuadranteGol9" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jBtQuadranteGol7" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol8" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jBtQuadranteGol9" min="-2" pref="150" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jBtCancelarGol" min="-2" pref="150" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,23 +77,37 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBtQuadranteGol2" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol3" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol1" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol2" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol3" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol1" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBtQuadranteGol4" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol6" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol5" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol4" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol6" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol5" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBtQuadranteGol7" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol8" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="jBtQuadranteGol9" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol7" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol8" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="jBtQuadranteGol9" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jBtTipoChuteFora" max="32767" attributes="0"/>
+                      <Component id="jBtTipoChuteGol" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jBtTipoChuteDefesa" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jBtCancelarGol" pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,6 +184,42 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteGol9ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtCancelarGol">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CANCELAR GOL"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtCancelarGolActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtTipoChuteDefesa">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DEFESA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtTipoChuteDefesaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtTipoChuteGol">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GOL"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtTipoChuteGolActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtTipoChuteFora">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="FORA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtTipoChuteForaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator3">
     </Component>
   </SubComponents>
 </Form>
