@@ -15,12 +15,28 @@ public class DlgGol extends javax.swing.JDialog {
     private GolManager golManager;
 
 
-    public DlgGol(boolean modal, String time, String quadranteChute) {
+    public DlgGol(boolean modal, String time, String quadranteChute, String nomeArquivo) {
     setTitle("CHUTE: " + quadranteChute);
-    golManager = new GolManager(time, quadranteChute); // Crie uma instância do GolManager
+    golManager = new GolManager(time, quadranteChute, nomeArquivo);
     initComponents();
-    
+    bloquearBotao(false);
 }
+
+    
+    private void bloquearBotao(boolean flag){
+        this.jBtQuadranteGol1.setEnabled(flag);
+        this.jBtQuadranteGol2.setEnabled(flag);
+        this.jBtQuadranteGol3.setEnabled(flag);
+        this.jBtQuadranteGol4.setEnabled(flag);
+        this.jBtQuadranteGol5.setEnabled(flag);
+        this.jBtQuadranteGol6.setEnabled(flag);
+        this.jBtQuadranteGol7.setEnabled(flag);
+        this.jBtQuadranteGol8.setEnabled(flag);
+        this.jBtQuadranteGol9.setEnabled(flag);
+    }
+            
+            
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +48,7 @@ public class DlgGol extends javax.swing.JDialog {
 
         jSeparator1 = new javax.swing.JSeparator();
         jSlider1 = new javax.swing.JSlider();
+        jPanel1 = new javax.swing.JPanel();
         jBtQuadranteGol1 = new javax.swing.JButton();
         jBtQuadranteGol2 = new javax.swing.JButton();
         jBtQuadranteGol3 = new javax.swing.JButton();
@@ -47,6 +64,17 @@ public class DlgGol extends javax.swing.JDialog {
         jBtTipoChuteFora = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -123,6 +151,11 @@ public class DlgGol extends javax.swing.JDialog {
         });
 
         jBtTipoChuteDefesa.setText("DEFESA");
+        jBtTipoChuteDefesa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtTipoChuteDefesaMouseClicked(evt);
+            }
+        });
         jBtTipoChuteDefesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtTipoChuteDefesaActionPerformed(evt);
@@ -130,6 +163,11 @@ public class DlgGol extends javax.swing.JDialog {
         });
 
         jBtTipoChuteGol.setText("GOL");
+        jBtTipoChuteGol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtTipoChuteGolMouseClicked(evt);
+            }
+        });
         jBtTipoChuteGol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtTipoChuteGolActionPerformed(evt);
@@ -290,6 +328,14 @@ public class DlgGol extends javax.swing.JDialog {
     }
     }//GEN-LAST:event_jBtCancelarGolActionPerformed
 
+    private void jBtTipoChuteGolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteGolMouseClicked
+        bloquearBotao(true);
+    }//GEN-LAST:event_jBtTipoChuteGolMouseClicked
+
+    private void jBtTipoChuteDefesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteDefesaMouseClicked
+        bloquearBotao(true);
+    }//GEN-LAST:event_jBtTipoChuteDefesaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +354,7 @@ public class DlgGol extends javax.swing.JDialog {
     private javax.swing.JButton jBtTipoChuteDefesa;
     private javax.swing.JButton jBtTipoChuteFora;
     private javax.swing.JButton jBtTipoChuteGol;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

@@ -4,6 +4,11 @@
  */
 package com.mycompany.handballscoutapp.GUI;
 
+import com.mycompany.handballscoutapp.GolManager;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +20,11 @@ public class FrHome extends javax.swing.JFrame {
     private String timeB = "";
     private int placarTimeA = 0;
     private int placarTimeB = 0;
-    
+    private boolean nomesTimesPreenchidos = false;
+    private String nomeArquivo;
+    private GolManager golManager;
+
+
 
     /**
      * Creates new form FrHome
@@ -23,10 +32,13 @@ public class FrHome extends javax.swing.JFrame {
     public FrHome() {
         setTitle("TIME:");
         initComponents();
+        bloquearBotao(false);
         jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
+
     }
-  
-private void criarQuadra(String time) {
+    
+
+private void criarQuadra(String time,String nomeArquivo) {
     if (!time.isEmpty() && !timeA.isEmpty() && !timeB.isEmpty()) {
         // Incrementa o placar do time correspondente
         if (time.equals(timeA)) {
@@ -38,7 +50,7 @@ private void criarQuadra(String time) {
         // Atualiza o texto do JLabel com o novo placar
         jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
         
-        DlgQuadra telaQuadra = new DlgQuadra(true, time);
+        DlgQuadra telaQuadra = new DlgQuadra(true, time,nomeArquivo);
         telaQuadra.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -53,6 +65,46 @@ private void criarQuadra(String time) {
     
     return true; // Nomes diferentes, retorna true
 }
+    
+    private void bloquearBotao(boolean flag){
+        this.jBtTimeA.setEnabled(flag);
+        this.jBtTimeB.setEnabled(flag);
+        this.jBtFinalizarPartida.setEnabled(flag);
+    }
+    
+    private String gerarNomeArquivo() {
+    return String.format("RELATORIO_%s_%s.txt", timeA, timeB);
+}
+    
+    private void criarArquivoComNomesDosTimes(String nomeArquivoBase) {
+    nomeArquivo = nomeArquivoBase;
+    int contador = 1;
+
+    while (arquivoExiste(nomeArquivo)) {
+        nomeArquivo = nomeArquivoBase + "_" + contador;
+        contador++;
+    }
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+        writer.write("Time A: " + timeA);
+        writer.newLine();
+        writer.write("Time B: " + timeB);
+        writer.newLine();
+        writer.newLine();
+        JOptionPane.showMessageDialog(this, "Arquivo criado com sucesso: " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao criar o arquivo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+private boolean arquivoExiste(String nomeArquivo) {
+    File arquivo = new File(nomeArquivo);
+    return arquivo.exists();
+}
+
+
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +124,8 @@ private void criarQuadra(String time) {
         jTextField2 = new javax.swing.JTextField();
         jLabelPlacar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBtFinalizarPartida = new javax.swing.JButton();
+        jBtInicializarPartida = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -115,10 +168,22 @@ private void criarQuadra(String time) {
 
         jLabel4.setText("PLACAR:");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtFinalizarPartida.setText("FINALIZAR PARTIDA");
+        jBtFinalizarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtFinalizarPartidaActionPerformed(evt);
+            }
+        });
+
+        jBtInicializarPartida.setText("INICIALIZAR PARTIDA");
+        jBtInicializarPartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtInicializarPartidaMouseClicked(evt);
+            }
+        });
+        jBtInicializarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtInicializarPartidaActionPerformed(evt);
             }
         });
 
@@ -143,8 +208,10 @@ private void criarQuadra(String time) {
                     .addComponent(jLabelPlacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jButton1)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtInicializarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtFinalizarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,9 +233,11 @@ private void criarQuadra(String time) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(26, 26, 26))
+                .addGap(18, 18, 18)
+                .addComponent(jBtInicializarPartida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtFinalizarPartida)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,11 +245,11 @@ private void criarQuadra(String time) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtTimeAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeAActionPerformed
-        criarQuadra(timeA);
+        criarQuadra(timeA,nomeArquivo);
     }//GEN-LAST:event_jBtTimeAActionPerformed
 
     private void jBtTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeBActionPerformed
-        criarQuadra(timeB);
+        criarQuadra(timeB,nomeArquivo);
     }//GEN-LAST:event_jBtTimeBActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -199,18 +268,48 @@ private void criarQuadra(String time) {
     }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jBtFinalizarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFinalizarPartidaActionPerformed
+        golManager.escreverEstatisticasEmArquivo();
+    }//GEN-LAST:event_jBtFinalizarPartidaActionPerformed
+
+    private void jBtInicializarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtInicializarPartidaActionPerformed
+        if (!timeA.isEmpty() && !timeB.isEmpty()) {
+        // Os nomes dos times foram preenchidos, permita o uso de outros botões
+        nomesTimesPreenchidos = true;
+        bloquearBotao(true);
+        jBtInicializarPartida.setEnabled(false);
+
+        // Gere o nome do arquivo
+        String nomeArquivo = gerarNomeArquivo();
+
+        // Crie o arquivo com os nomes dos times
+        criarArquivoComNomesDosTimes(nomeArquivo);
+        golManager = new GolManager("", "", nomeArquivo);
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+    }
+    }//GEN-LAST:event_jBtInicializarPartidaActionPerformed
+
+    private void jBtInicializarPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtInicializarPartidaMouseClicked
+        if (timeA.isEmpty() && timeB.isEmpty()) {
+        
+            JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+    
+        }else{
+        bloquearBotao(true);
+        }
+    }//GEN-LAST:event_jBtInicializarPartidaMouseClicked
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtFinalizarPartida;
+    private javax.swing.JButton jBtInicializarPartida;
     private javax.swing.JButton jBtTimeA;
     private javax.swing.JButton jBtTimeB;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

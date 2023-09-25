@@ -8,13 +8,15 @@ import com.mycompany.handballscoutapp.GUI.DlgGol;
 
 public class QuadraManager {
     private String timeFinal;
+    private String nomeArquivoFinal;
 
-    public QuadraManager(String time) {
+    public QuadraManager(String time, String nomeArquivo) {
         timeFinal = time;
+        nomeArquivoFinal = nomeArquivo;
     }
 
-    public void criarGol(String quadranteChute) {
-        DlgGol gol = new DlgGol(true, timeFinal, quadranteChute);
-        gol.setVisible(true);
-    }
+    public void criarGol(String quadranteChute, String nome) {
+    DlgGol gol = new DlgGol(true, timeFinal, quadranteChute, nomeArquivoFinal);
+    gol.setVisible(true);
+}
 }

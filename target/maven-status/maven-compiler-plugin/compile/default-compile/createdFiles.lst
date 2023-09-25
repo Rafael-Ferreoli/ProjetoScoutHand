@@ -11,6 +11,8 @@ com\mycompany\handballscoutapp\GUI\DlgGol$10.class
 com\mycompany\handballscoutapp\GUI\FrHome$1.class
 com\mycompany\handballscoutapp\GUI\DlgGol$4.class
 com\mycompany\handballscoutapp\GUI\DlgQuadra$3.class
+com\mycompany\handballscoutapp\GUI\DlgGol$15.class
+com\mycompany\handballscoutapp\GUI\FrHome$6.class
 com\mycompany\handballscoutapp\QuadraManager.class
 com\mycompany\handballscoutapp\GUI\DlgQuadra$8.class
 com\mycompany\handballscoutapp\GUI\DlgGol$12.class
@@ -19,9 +21,11 @@ com\mycompany\handballscoutapp\HandballScoutApp.class
 com\mycompany\handballscoutapp\GUI\DlgGol$6.class
 com\mycompany\handballscoutapp\GUI\DlgGol$1.class
 com\mycompany\handballscoutapp\GUI\DlgQuadra.class
+com\mycompany\handballscoutapp\GUI\DlgGol$14.class
 com\mycompany\handballscoutapp\GolManager.class
 com\mycompany\handballscoutapp\GUI\DlgQuadra$5.class
 com\mycompany\handballscoutapp\GUI\FrHome$3.class
+com\mycompany\handballscoutapp\GUI\FrHome$7.class
 com\mycompany\handballscoutapp\GUI\DlgQuadra$2.class
 com\mycompany\handballscoutapp\GUI\DlgGol$3.class
 com\mycompany\handballscoutapp\GUI\FrHome$2.class

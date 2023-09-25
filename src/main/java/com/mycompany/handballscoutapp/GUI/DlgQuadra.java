@@ -13,14 +13,17 @@ import com.mycompany.handballscoutapp.QuadraManager;
  */
 public class DlgQuadra extends javax.swing.JDialog {
     private String timeFinal;
+    private String nomeArquivoFinal;
     private QuadraManager quadraManager;
 
-    public DlgQuadra(boolean modal, String time) {
+    public DlgQuadra(boolean modal, String time,String nomeArquivo) {
         setTitle("SELECIONE O QUADRANTE DO CHUTE:");
         timeFinal = time;
-        quadraManager = new QuadraManager(time); // Instância do QuadraManager
+        nomeArquivoFinal = nomeArquivo;
+        quadraManager = new QuadraManager(time,nomeArquivo); // Instância do QuadraManager
         initComponents();
     }
+   
     
 
 
@@ -162,39 +165,48 @@ public class DlgQuadra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtQuadranteQuadra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra1ActionPerformed
-        quadraManager.criarGol("Q1 QUADRA");
+        quadraManager.criarGol("Q1 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra1ActionPerformed
 
     private void jBtQuadranteQuadra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra2ActionPerformed
-        quadraManager.criarGol("Q2 QUADRA");
+        quadraManager.criarGol("Q2 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra2ActionPerformed
 
     private void jBtQuadranteQuadra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra3ActionPerformed
-        quadraManager.criarGol("Q3 QUADRA");
+        quadraManager.criarGol("Q3 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra3ActionPerformed
 
     private void jBtQuadranteQuadra4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra4ActionPerformed
-        quadraManager.criarGol("Q4 QUADRA");
+        quadraManager.criarGol("Q4 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra4ActionPerformed
 
     private void jBtQuadranteQuadra5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra5ActionPerformed
-        quadraManager.criarGol("Q5 QUADRA");
+        quadraManager.criarGol("Q5 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra5ActionPerformed
 
     private void jBtQuadranteQuadra6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra6ActionPerformed
-        quadraManager.criarGol("Q6 QUADRA");
+        quadraManager.criarGol("Q6 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra6ActionPerformed
 
     private void jBtQuadranteQuadra7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra7ActionPerformed
-        quadraManager.criarGol("Q7 QUADRA");
+        quadraManager.criarGol("Q7 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra7ActionPerformed
 
     private void jBtQuadranteQuadra8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra8ActionPerformed
-        quadraManager.criarGol("Q8 QUADRA");
+        quadraManager.criarGol("Q8 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra8ActionPerformed
 
     private void jBtQuadranteQuadra9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra9ActionPerformed
-        quadraManager.criarGol("Q9 QUADRA");
+        quadraManager.criarGol("Q9 QUADRA",nomeArquivoFinal);
+        setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra9ActionPerformed
 
     /**

@@ -16,10 +16,17 @@ public class GolManager {
     private final String timeFinal;
     private final String quadranteChuteFinal;
     private boolean acaoExecutada = false;
+    private final String nomeArquivo;
+    private int totalChutes = 0;
+    private int totalDefesas = 0;
+    private int totalChutesFora = 0;
+    private int totalGols = 0;
 
-    public GolManager(String time, String quadranteChute) {
-        timeFinal = time;
-        quadranteChuteFinal = quadranteChute;
+
+    public GolManager(String time, String quadranteChute, String nomeArquivo) {
+        this.timeFinal = time;
+        this.quadranteChuteFinal = quadranteChute;
+        this.nomeArquivo = nomeArquivo;
     }
 
     public void setTipoChute(String tipoChute) {
@@ -29,22 +36,14 @@ public class GolManager {
     public String getQuadranteChuteFinal() {
     return quadranteChuteFinal;
 }
-
-
+    
     public void verificarEExecutarAcao(String quadrante) {
-        if (tipoChuteSelecionado == null) {
-            JOptionPane.showMessageDialog(null, "POR FAVOR, SELECIONE UM TIPO DE CHUTE (GOL, FORA ou DEFESA) ANTES DE MARCAR O QUADRANTE!");
-        }
-
-        if (tipoChuteSelecionado.equals("FORA")) {
-            salvarQuadranteChute(quadranteChuteFinal);
-
-        }
-
-        if (!acaoExecutada) {
-            criarInformacaoGol(quadrante);
-        }
+    if (!acaoExecutada) {
+        criarInformacaoGol(quadrante);
+        acaoExecutada = true;
     }
+}
+
 
     private String obterHoraAtual() {
         LocalTime agora = LocalTime.now();
@@ -77,66 +76,50 @@ public class GolManager {
         if (resposta == JOptionPane.YES_OPTION) {
             String informacaoGol = formatarInformacaoGol(quadranteGol);
             informacoesGols.add(informacaoGol);
-            escreverInformacoesEmArquivo("informacoes_de_gols.txt");
+            escreverInformacoesEmArquivo(nomeArquivo);
             acaoExecutada = true;
         }
     }
 
     public void salvarQuadranteChute(String quadranteChute) {
+        totalChutesFora++;
         String informacao = formatarInformacaoGol(quadranteChute);
         informacoesGols.add(informacao);
-        escreverInformacoesEmArquivo("informacoes_de_gols.txt");
+        escreverInformacoesEmArquivo(nomeArquivo);
     }
 
     public void escreverInformacoesEmArquivo(String nomeArquivo) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
-            for (String informacao : informacoesGols) {
-                writer.write(informacao);
-                writer.newLine();
-            }
-            System.out.println("Informações gravadas em:" + nomeArquivo);
-        } catch (IOException e) {
-            System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+        for (String informacao : informacoesGols) {
+            writer.write(informacao);
+            writer.newLine();
         }
+        System.out.println("Informações gravadas em: " + nomeArquivo);
+    } catch (IOException e) {
+        System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
     }
+}
     
-    public void gerarEstatisticas(String nomeArquivo) throws IOException {
-    int totalChutes = informacoesGols.size();
-    int totalGols = 0;
-
-    int[] golsPorQuadrante = new int[9];
-    int[] chutesPorQuadrante = new int[9];
-
-    for (String informacao : informacoesGols) {
-        if (informacao.contains("GOL")) {
-            totalGols++;
-            String[] partes = informacao.split("->");
-            String quadranteGol = partes[1].trim();
-            int indiceQuadrante = Integer.parseInt(quadranteGol.substring(1)) - 1;
-            golsPorQuadrante[indiceQuadrante]++;
-        } else if (informacao.contains("FORA")) {
-            String quadranteChute = informacao.split(":")[1].trim();
-            int indiceQuadrante = Integer.parseInt(quadranteChute.substring(1)) - 1;
-            chutesPorQuadrante[indiceQuadrante]++;
-        }
-    }
-
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-        writer.write("Estatísticas da Partida");
+    public void escreverEstatisticasEmArquivo() {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+        writer.newLine();
+        totalChutes = totalChutes + totalChutesFora;
+        writer.write("Estatísticas da partida:");
         writer.newLine();
         writer.write("Total de Chutes: " + totalChutes);
         writer.newLine();
+        writer.write("Total de Defesas: " + totalDefesas);
+        writer.newLine();
+        writer.write("Total de Chutes Fora: " + totalChutesFora);
+        writer.newLine();
         writer.write("Total de Gols: " + totalGols);
         writer.newLine();
-        writer.newLine();
-        writer.write("Estatísticas por Quadrante de Gol:");
-        writer.newLine();
+        writer.newLine(); // Adicione uma linha em branco para separar das informações de gols anteriores
+        System.out.println("Estatísticas gravadas em: " + nomeArquivo);
+    } catch (IOException e) {
+        System.out.println("Erro ao escrever estatísticas no arquivo: " + e.getMessage());
+    }
+}
 
-        for (int i = 0; i < 9; i++) {
-            int numeroQuadrante = i + 1;
-            writer.write("Q" + numeroQuadrante + ": " + golsPorQuadrante[i] + "/" + chutesPorQuadrante[i] + " gols");
-        }
-    }
-    }
 }
 
