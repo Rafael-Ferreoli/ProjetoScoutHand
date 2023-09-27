@@ -7,6 +7,7 @@ package com.mycompany.handballscoutapp;
 import com.mycompany.handballscoutapp.GUI.DlgGol;
 
 public class QuadraManager {
+
     private String timeFinal;
     private String nomeArquivoFinal;
 
@@ -16,7 +17,7 @@ public class QuadraManager {
     }
 
     public void criarGol(String quadranteChute, String nome) {
-    DlgGol gol = new DlgGol(true, timeFinal, quadranteChute, nomeArquivoFinal);
-    gol.setVisible(true);
-}
+        DlgGol gol = new DlgGol(true, timeFinal, quadranteChute, nomeArquivoFinal);
+        gol.setVisible(true);
+    }
 }

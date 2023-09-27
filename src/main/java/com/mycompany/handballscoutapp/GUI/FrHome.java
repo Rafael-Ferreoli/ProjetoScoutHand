@@ -9,6 +9,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
  * @author rafae
  */
 public class FrHome extends javax.swing.JFrame {
+
     private String timeA = "";
     private String timeB = "";
     private int placarTimeA = 0;
@@ -23,8 +26,6 @@ public class FrHome extends javax.swing.JFrame {
     private boolean nomesTimesPreenchidos = false;
     private String nomeArquivo;
     private GolManager golManager;
-
-
 
     /**
      * Creates new form FrHome
@@ -36,75 +37,70 @@ public class FrHome extends javax.swing.JFrame {
         jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
 
     }
-    
 
-private void criarQuadra(String time,String nomeArquivo) {
-    if (!time.isEmpty() && !timeA.isEmpty() && !timeB.isEmpty()) {
-        // Incrementa o placar do time correspondente
-        if (time.equals(timeA)) {
-            placarTimeA++;
-        } else if (time.equals(timeB)) {
-            placarTimeB++;
+    private void criarQuadra(String time, String nomeArquivo) {
+        if (!time.isEmpty() && !timeA.isEmpty() && !timeB.isEmpty()) {
+            // Incrementa o placar do time correspondente
+            if (time.equals(timeA)) {
+                placarTimeA++;
+            } else if (time.equals(timeB)) {
+                placarTimeB++;
+            }
+
+            // Atualiza o texto do JLabel com o novo placar
+            jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
+
+            DlgQuadra telaQuadra = new DlgQuadra(true, time, nomeArquivo);
+            telaQuadra.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
-        
-        // Atualiza o texto do JLabel com o novo placar
-        jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
-        
-        DlgQuadra telaQuadra = new DlgQuadra(true, time,nomeArquivo);
-        telaQuadra.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
     }
-}
 
     private boolean validarNomesTimes(String nomeTimeA, String nomeTimeB) {
-    if (nomeTimeA.equals(nomeTimeB)) {
-        JOptionPane.showMessageDialog(this, "Os nomes dos times não podem ser iguais.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        return false; // Nomes iguais, retorna false
+        if (nomeTimeA.equals(nomeTimeB)) {
+            JOptionPane.showMessageDialog(this, "Os nomes dos times não podem ser iguais.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false; // Nomes iguais, retorna false
+        }
+
+        return true; // Nomes diferentes, retorna true
     }
-    
-    return true; // Nomes diferentes, retorna true
-}
-    
-    private void bloquearBotao(boolean flag){
+
+    private void bloquearBotao(boolean flag) {
         this.jBtTimeA.setEnabled(flag);
         this.jBtTimeB.setEnabled(flag);
         this.jBtFinalizarPartida.setEnabled(flag);
     }
-    
+
     private String gerarNomeArquivo() {
-    return String.format("RELATORIO_%s_%s.txt", timeA, timeB);
-}
-    
+        return String.format("RELATORIO_%s_%s.txt", timeA, timeB);
+    }
+
     private void criarArquivoComNomesDosTimes(String nomeArquivoBase) {
-    nomeArquivo = nomeArquivoBase;
-    int contador = 1;
+        nomeArquivo = nomeArquivoBase;
+        int contador = 1;
 
-    while (arquivoExiste(nomeArquivo)) {
-        nomeArquivo = nomeArquivoBase + "_" + contador;
-        contador++;
+        while (arquivoExiste(nomeArquivo)) {
+            nomeArquivo = nomeArquivoBase + "_" + contador;
+            contador++;
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            writer.write("TIME A: " + timeA);
+            writer.newLine();
+            writer.write("TIME B: " + timeB);
+            writer.newLine();
+            writer.newLine();
+            JOptionPane.showMessageDialog(this, "Arquivo criado com sucesso: " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao criar o arquivo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-        writer.write("Time A: " + timeA);
-        writer.newLine();
-        writer.write("Time B: " + timeB);
-        writer.newLine();
-        writer.newLine();
-        JOptionPane.showMessageDialog(this, "Arquivo criado com sucesso: " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Erro ao criar o arquivo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    private boolean arquivoExiste(String nomeArquivo) {
+        File arquivo = new File(nomeArquivo);
+        return arquivo.exists();
     }
-}
-
-private boolean arquivoExiste(String nomeArquivo) {
-    File arquivo = new File(nomeArquivo);
-    return arquivo.exists();
-}
-
-
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -245,59 +241,63 @@ private boolean arquivoExiste(String nomeArquivo) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtTimeAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeAActionPerformed
-        criarQuadra(timeA,nomeArquivo);
+        criarQuadra(timeA, nomeArquivo);
     }//GEN-LAST:event_jBtTimeAActionPerformed
 
     private void jBtTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeBActionPerformed
-        criarQuadra(timeB,nomeArquivo);
+        criarQuadra(timeB, nomeArquivo);
     }//GEN-LAST:event_jBtTimeBActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         String textoDigitado2 = jTextField2.getText();
         if (validarNomesTimes(timeA, textoDigitado2)) {
-        timeB = textoDigitado2;
-        jTextField2.setEnabled(false);
-    }
+            timeB = textoDigitado2;
+            jTextField2.setEnabled(false);
+        }
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         String textoDigitado1 = jTextField1.getText();
         if (validarNomesTimes(textoDigitado1, timeB)) {
-        timeA = textoDigitado1;
-        jTextField1.setEnabled(false);
-    }
+            timeA = textoDigitado1;
+            jTextField1.setEnabled(false);
+        }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jBtFinalizarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFinalizarPartidaActionPerformed
-        golManager.escreverEstatisticasEmArquivo();
+        try {
+            golManager.lerEscreverEstatisticasDoArquivo(nomeArquivo);
+        } catch (IOException ex) {
+            Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBtFinalizarPartidaActionPerformed
 
     private void jBtInicializarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtInicializarPartidaActionPerformed
         if (!timeA.isEmpty() && !timeB.isEmpty()) {
-        // Os nomes dos times foram preenchidos, permita o uso de outros botões
-        nomesTimesPreenchidos = true;
-        bloquearBotao(true);
-        jBtInicializarPartida.setEnabled(false);
+            // Os nomes dos times foram preenchidos, permita o uso de outros botões
+            nomesTimesPreenchidos = true;
+            bloquearBotao(true);
+            jBtInicializarPartida.setEnabled(false);
 
-        // Gere o nome do arquivo
-        String nomeArquivo = gerarNomeArquivo();
+            // Gere o nome do arquivo
+            String nomeArquivo = gerarNomeArquivo();
 
-        // Crie o arquivo com os nomes dos times
-        criarArquivoComNomesDosTimes(nomeArquivo);
-        golManager = new GolManager("", "", nomeArquivo);
+            // Crie o arquivo com os nomes dos times
+            criarArquivoComNomesDosTimes(nomeArquivo);
+            golManager = new GolManager("", "", nomeArquivo);
 
-    } else {
-        JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-    }
+        } else {
+            JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBtInicializarPartidaActionPerformed
 
     private void jBtInicializarPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtInicializarPartidaMouseClicked
         if (timeA.isEmpty() && timeB.isEmpty()) {
-        
+
             JOptionPane.showMessageDialog(this, "Preencha os nomes dos times antes de continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-    
-        }else{
-        bloquearBotao(true);
+
+        } else {
+            bloquearBotao(true);
         }
     }//GEN-LAST:event_jBtInicializarPartidaMouseClicked
 

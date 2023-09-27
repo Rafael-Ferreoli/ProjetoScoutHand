@@ -3,27 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.mycompany.handballscoutapp.GUI;
+
 import com.mycompany.handballscoutapp.GolManager;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author ifmaker
  */
 public class DlgGol extends javax.swing.JDialog {
+
     private GolManager golManager;
 
-
     public DlgGol(boolean modal, String time, String quadranteChute, String nomeArquivo) {
-    setTitle("CHUTE: " + quadranteChute);
-    golManager = new GolManager(time, quadranteChute, nomeArquivo);
-    initComponents();
-    bloquearBotao(false);
-}
+        setTitle("CHUTE: " + quadranteChute);
+        golManager = new GolManager(time, quadranteChute, nomeArquivo);
+        initComponents();
+        bloquearBotao(false);
 
-    
-    private void bloquearBotao(boolean flag){
+    }
+
+    private void bloquearBotao(boolean flag) {
         this.jBtQuadranteGol1.setEnabled(flag);
         this.jBtQuadranteGol2.setEnabled(flag);
         this.jBtQuadranteGol3.setEnabled(flag);
@@ -34,9 +34,7 @@ public class DlgGol extends javax.swing.JDialog {
         this.jBtQuadranteGol8.setEnabled(flag);
         this.jBtQuadranteGol9.setEnabled(flag);
     }
-            
-            
-            
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -309,23 +307,23 @@ public class DlgGol extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtTipoChuteGolActionPerformed
 
     private void jBtTipoChuteForaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTipoChuteForaActionPerformed
-        golManager.setTipoChute("FORA");    
-    int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME SE O CHUTE FOI PARA FORA:", "CONFIRMAÇÃO DE CHUTE PARA FORA", JOptionPane.YES_NO_OPTION);
-    
-    if (resposta == JOptionPane.YES_OPTION) {
-        golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal());
+        golManager.setTipoChute("FORA");
+        int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME SE O CHUTE FOI PARA FORA:", "CONFIRMAÇÃO DE CHUTE PARA FORA", JOptionPane.YES_NO_OPTION);
 
-        this.setVisible(false);
-    }
+        if (resposta == JOptionPane.YES_OPTION) {
+            golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal());
+
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtTipoChuteForaActionPerformed
 
     private void jBtCancelarGolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCancelarGolActionPerformed
         int resposta = JOptionPane.showConfirmDialog(this, "TEM CERTEZA QUE DESEJA CANCELAR ESTE CHUTE?", "CONFIRMAÇÃO DE CANCELAMENTO", JOptionPane.YES_NO_OPTION);
-    
-    if (resposta == JOptionPane.YES_OPTION) {
-        // O usuário confirmou o cancelamento, volte para a tela inicial.
-        this.setVisible(false);
-    }
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            // O usuário confirmou o cancelamento, volte para a tela inicial.
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtCancelarGolActionPerformed
 
     private void jBtTipoChuteGolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteGolMouseClicked
