@@ -82,6 +82,7 @@
         <Property name="text" type="java.lang.String" value="Q1 QUADRA"/>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra1AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra1ActionPerformed"/>
       </Events>
     </Component>
@@ -90,6 +91,7 @@
         <Property name="text" type="java.lang.String" value="Q2 QUADRA"/>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra2AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra2ActionPerformed"/>
       </Events>
     </Component>
@@ -98,6 +100,7 @@
         <Property name="text" type="java.lang.String" value="Q3 QUADRA"/>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra3AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra3ActionPerformed"/>
       </Events>
     </Component>
@@ -106,6 +109,7 @@
         <Property name="text" type="java.lang.String" value="Q4 QUADRA"/>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra4AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra4ActionPerformed"/>
       </Events>
     </Component>
@@ -114,6 +118,7 @@
         <Property name="text" type="java.lang.String" value="Q5 QUADRA"/>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra5AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra5ActionPerformed"/>
       </Events>
     </Component>
@@ -125,6 +130,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra6AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra6ActionPerformed"/>
       </Events>
     </Component>
@@ -136,6 +142,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra7AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra7ActionPerformed"/>
       </Events>
     </Component>
@@ -147,6 +154,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra8AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra8ActionPerformed"/>
       </Events>
     </Component>
@@ -158,6 +166,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jBtQuadranteQuadra9AncestorAdded"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtQuadranteQuadra9ActionPerformed"/>
       </Events>
     </Component>

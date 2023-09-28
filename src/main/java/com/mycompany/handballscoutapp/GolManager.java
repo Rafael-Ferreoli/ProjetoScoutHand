@@ -107,10 +107,9 @@ public class GolManager {
     public void escreverInformacoesEmArquivo(String nomeArquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
             for (String informacao : informacoesGols) {
-                writer.write(informacao);
-                writer.newLine();
+                writer.write(informacao + "\n");
             }
-            System.out.println("Informações gravadas em: " + nomeArquivo);
+            System.out.println("INFORMAÇÃO DE CHUTE SALVA EM: " + nomeArquivo);
         } catch (IOException e) {
             System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
@@ -279,7 +278,7 @@ public class GolManager {
             paresVariaveisA.add(parA8);
             String parA9 = Q9AGol + "/" + (Q9ADefesa + Q9AGol);
             paresVariaveisA.add(parA9);
-            
+
             String parB1 = Q1BGol + "/" + (Q1BDefesa + Q1BGol);
             paresVariaveisB.add(parB1);
             String parB2 = Q2BGol + "/" + (Q2BDefesa + Q2BGol);
@@ -299,42 +298,24 @@ public class GolManager {
             String parB9 = Q9BGol + "/" + (Q9BDefesa + Q9BGol);
             paresVariaveisB.add(parB9);
 
-
             totalChutesA = totalChutesForaA + totalDefesasA + totalGolsA;
             totalChutesB = totalChutesForaB + totalDefesasB + totalGolsB;
-
             // Escreva as estatísticas no final do arquivo
-            writer.newLine();
-            writer.write("ESTATÍSTICAS DA PARTIDA:");
-            writer.newLine();
-            writer.newLine();
-            writer.write("TIME: " + nomeTimeA);
-            writer.newLine();
-            writer.newLine();
-            writer.write("TOTAL CHUTES " + nomeTimeA + ": " + totalChutesA);
-            writer.newLine();
-            writer.write("TOTAL DEFESAS " + nomeTimeA + ": " + totalDefesasA);
-            writer.newLine();
-            writer.write("TOTAL CHUTES FORA " + nomeTimeA + ": " + totalChutesForaA);
-            writer.newLine();
-            writer.write("TOTAL GOLS " + nomeTimeA + ": " + totalGolsA);
-            writer.newLine();
-            writer.newLine();
-            writer.write("TIME: " + nomeTimeB);
-            writer.newLine();
-            writer.newLine();
-            writer.write("TOTAL CHUTES " + nomeTimeB + ": " + totalChutesB);
-            writer.newLine();
-            writer.write("TOTAL DEFESAS " + nomeTimeB + ": " + totalDefesasB);
-            writer.newLine();
-            writer.write("TOTAL CHUTES FORA " + nomeTimeB + ": " + totalChutesForaB);
-            writer.newLine();
-            writer.write("TOTAL GOLS " + nomeTimeB + ": " + totalGolsB);
-            writer.newLine();
-            writer.newLine();
-            writer.write("APROVEITAMENTO GOL/CHUTES DO TIME: " + nomeTimeA);
-            writer.newLine();
-            writer.newLine();
+            StringBuilder data = new StringBuilder();
+
+            data.append("\n" + "ESTATÍSTICAS DA PARTIDA:" + "\n" + "\n"
+                    + "TIME: " + nomeTimeA + "\n" + "\n"
+                    + "TOTAL CHUTES " + nomeTimeA + ": " + totalChutesA + "\n"
+                    + "TOTAL DEFESAS " + nomeTimeA + ": " + totalDefesasA + "\n"
+                    + "TOTAL CHUTES FORA " + nomeTimeA + ": " + totalChutesForaA + "\n"
+                    + "TOTAL GOLS " + nomeTimeA + ": " + totalGolsA + "\n" + "\n"
+                    + "TIME: " + nomeTimeB + "\n" + "\n"
+                    + "TOTAL CHUTES " + nomeTimeB + ": " + totalChutesB + "\n"
+                    + "TOTAL DEFESAS " + nomeTimeB + ": " + totalDefesasB + "\n"
+                    + "TOTAL CHUTES FORA " + nomeTimeB + ": " + totalChutesForaB + "\n"
+                    + "TOTAL GOLS " + nomeTimeB + ": " + totalGolsB + "\n" + "\n"
+                    + "APROVEITAMENTO GOL/CHUTES DO TIME: " + nomeTimeA + "\n" + "\n"
+            );
 
             int[][] matrizIndicesA = {
                 {0, 1, 2},
@@ -342,23 +323,20 @@ public class GolManager {
                 {6, 7, 8}
             };
 
-
             for (int i = 0; i < 3; i++) {
-                writer.write("|   ");
+                data.append("|   ");
                 for (int j = 0; j < 3; j++) {
                     int indice = matrizIndicesA[i][j];
                     String par = paresVariaveisA.get(indice);
-                    writer.write(par + "   |   ");
+                    data.append(par + "   |   ");
                 }
-                writer.newLine();
+                data.append("\n");
             }
-            
-            writer.newLine();
-            writer.newLine();
-            writer.write("APROVEITAMENTO GOL/CHUTES DO TIME: " + nomeTimeB);
-            writer.newLine();
-            writer.newLine();
-            
+
+            data.append("\n");
+            data.append("APROVEITAMENTO GOL/CHUTES DO TIME: " + nomeTimeB + "\n");
+            data.append("\n");
+
             int[][] matrizIndicesB = {
                 {0, 1, 2},
                 {3, 4, 5},
@@ -366,15 +344,20 @@ public class GolManager {
             };
 
             for (int i = 0; i < 3; i++) {
-                writer.write("|   ");
+                data.append("|   ");
                 for (int j = 0; j < 3; j++) {
                     int indice = matrizIndicesB[i][j];
                     String par = paresVariaveisB.get(indice);
-                    writer.write(par + "   |   ");
+                    data.append(par + "   |   ");
                 }
-                writer.newLine();
+                data.append("\n");
             }
-            
+
+            writer.write(data.toString());
+
+            // Feche o writer quando terminar.
+            writer.close();
+            System.out.println("ESTATÍSTICAS GERADAS COM SUCESSO");
 
         } catch (IOException e) {
             e.printStackTrace();

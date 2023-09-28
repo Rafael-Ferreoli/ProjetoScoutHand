@@ -21,8 +21,8 @@ public class FrHome extends javax.swing.JFrame {
 
     private String timeA = "";
     private String timeB = "";
-    private int placarTimeA = 0;
-    private int placarTimeB = 0;
+    private static int placarTimeA = 0;
+    private static int placarTimeB = 0;
     private boolean nomesTimesPreenchidos = false;
     private String nomeArquivo;
     private GolManager golManager;
@@ -31,7 +31,7 @@ public class FrHome extends javax.swing.JFrame {
      * Creates new form FrHome
      */
     public FrHome() {
-        setTitle("TIME:");
+        setTitle("CHUTE TIME");
         initComponents();
         bloquearBotao(false);
         jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
@@ -41,11 +41,13 @@ public class FrHome extends javax.swing.JFrame {
     private void criarQuadra(String time, String nomeArquivo) {
         if (!time.isEmpty() && !timeA.isEmpty() && !timeB.isEmpty()) {
             // Incrementa o placar do time correspondente
+            /*
             if (time.equals(timeA)) {
                 placarTimeA++;
             } else if (time.equals(timeB)) {
                 placarTimeB++;
             }
+             */
 
             // Atualiza o texto do JLabel com o novo placar
             jLabelPlacar.setText(placarTimeA + " - " + placarTimeB);
@@ -81,16 +83,17 @@ public class FrHome extends javax.swing.JFrame {
         int contador = 1;
 
         while (arquivoExiste(nomeArquivo)) {
-            nomeArquivo = nomeArquivoBase + "_" + contador;
+            nomeArquivo = contador + "_" + nomeArquivoBase;
             contador++;
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            writer.write("TIME A: " + timeA);
-            writer.newLine();
-            writer.write("TIME B: " + timeB);
-            writer.newLine();
-            writer.newLine();
+            writer.write(
+                    "TIME A: " + timeA
+                    + "\n"
+                    + "TIME B: " + timeB
+                    + "\n" + "\n"
+            );
             JOptionPane.showMessageDialog(this, "Arquivo criado com sucesso: " + nomeArquivo, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Erro ao criar o arquivo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -122,20 +125,26 @@ public class FrHome extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jBtFinalizarPartida = new javax.swing.JButton();
         jBtInicializarPartida = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jBtTimeA.setText("GOL TIME A");
+        jBtTimeA.setBackground(new java.awt.Color(255, 255, 153));
+        jBtTimeA.setForeground(new java.awt.Color(0, 0, 0));
+        jBtTimeA.setText("CHUTE TIME A");
         jBtTimeA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtTimeAActionPerformed(evt);
             }
         });
 
-        jBtTimeB.setText("GOL TIME B");
+        jBtTimeB.setBackground(new java.awt.Color(153, 153, 255));
+        jBtTimeB.setForeground(new java.awt.Color(0, 0, 0));
+        jBtTimeB.setText("CHUTE TIME B");
         jBtTimeB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtTimeBActionPerformed(evt);
@@ -146,12 +155,17 @@ public class FrHome extends javax.swing.JFrame {
 
         jLabel2.setText("NOME TIME \"B\":");
 
+        jTextField1.setBackground(new java.awt.Color(255, 255, 153));
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.setToolTipText("");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
+        jTextField2.setBackground(new java.awt.Color(153, 153, 255));
+        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -164,6 +178,8 @@ public class FrHome extends javax.swing.JFrame {
 
         jLabel4.setText("PLACAR:");
 
+        jBtFinalizarPartida.setBackground(new java.awt.Color(255, 0, 0));
+        jBtFinalizarPartida.setForeground(new java.awt.Color(0, 0, 0));
         jBtFinalizarPartida.setText("FINALIZAR PARTIDA");
         jBtFinalizarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +187,8 @@ public class FrHome extends javax.swing.JFrame {
             }
         });
 
+        jBtInicializarPartida.setBackground(new java.awt.Color(51, 255, 0));
+        jBtInicializarPartida.setForeground(new java.awt.Color(0, 0, 0));
         jBtInicializarPartida.setText("INICIALIZAR PARTIDA");
         jBtInicializarPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -187,37 +205,39 @@ public class FrHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtTimeA)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtTimeB))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2)
-                    .addComponent(jLabelPlacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBtTimeA)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jBtTimeB))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField2)
+                            .addComponent(jLabelPlacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jBtInicializarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtFinalizarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtTimeA)
                     .addComponent(jBtTimeB))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPlacar)
                     .addComponent(jLabel4))
@@ -229,7 +249,9 @@ public class FrHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtInicializarPartida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtFinalizarPartida)
@@ -239,10 +261,6 @@ public class FrHome extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBtTimeAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeAActionPerformed
-        criarQuadra(timeA, nomeArquivo);
-    }//GEN-LAST:event_jBtTimeAActionPerformed
 
     private void jBtTimeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeBActionPerformed
         criarQuadra(timeB, nomeArquivo);
@@ -265,10 +283,14 @@ public class FrHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jBtFinalizarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFinalizarPartidaActionPerformed
-        try {
-            golManager.lerEscreverEstatisticasDoArquivo(nomeArquivo);
-        } catch (IOException ex) {
-            Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+        int resposta = JOptionPane.showConfirmDialog(null, "CONFIRME PARA FINALIZAR O PROGRAMA E GERAR AS ESTATÍSTICAS", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION) {
+            try {
+                golManager.lerEscreverEstatisticasDoArquivo(nomeArquivo);
+            } catch (IOException ex) {
+                Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.exit(0);
         }
     }//GEN-LAST:event_jBtFinalizarPartidaActionPerformed
 
@@ -301,6 +323,10 @@ public class FrHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBtInicializarPartidaMouseClicked
 
+    private void jBtTimeAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTimeAActionPerformed
+        criarQuadra(timeA, nomeArquivo);
+    }//GEN-LAST:event_jBtTimeAActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -315,6 +341,8 @@ public class FrHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelPlacar;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables

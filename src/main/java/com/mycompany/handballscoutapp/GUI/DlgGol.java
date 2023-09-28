@@ -5,6 +5,7 @@
 package com.mycompany.handballscoutapp.GUI;
 
 import com.mycompany.handballscoutapp.GolManager;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,18 @@ public class DlgGol extends javax.swing.JDialog {
         initComponents();
         bloquearBotao(false);
 
+    }
+
+    private void mudarCorBotao(Color c) {
+        this.jBtQuadranteGol1.setBackground(c);
+        this.jBtQuadranteGol2.setBackground(c);
+        this.jBtQuadranteGol3.setBackground(c);
+        this.jBtQuadranteGol4.setBackground(c);
+        this.jBtQuadranteGol5.setBackground(c);
+        this.jBtQuadranteGol6.setBackground(c);
+        this.jBtQuadranteGol7.setBackground(c);
+        this.jBtQuadranteGol8.setBackground(c);
+        this.jBtQuadranteGol9.setBackground(c);
     }
 
     private void bloquearBotao(boolean flag) {
@@ -148,6 +161,8 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
+        jBtTipoChuteDefesa.setBackground(new java.awt.Color(255, 0, 0));
+        jBtTipoChuteDefesa.setForeground(new java.awt.Color(0, 0, 0));
         jBtTipoChuteDefesa.setText("DEFESA");
         jBtTipoChuteDefesa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,6 +175,8 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
+        jBtTipoChuteGol.setBackground(new java.awt.Color(51, 255, 51));
+        jBtTipoChuteGol.setForeground(new java.awt.Color(0, 0, 0));
         jBtTipoChuteGol.setText("GOL");
         jBtTipoChuteGol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,6 +189,8 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
+        jBtTipoChuteFora.setBackground(new java.awt.Color(255, 255, 0));
+        jBtTipoChuteFora.setForeground(new java.awt.Color(0, 0, 0));
         jBtTipoChuteFora.setText("FORA");
         jBtTipoChuteFora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +328,6 @@ public class DlgGol extends javax.swing.JDialog {
     private void jBtTipoChuteForaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTipoChuteForaActionPerformed
         golManager.setTipoChute("FORA");
         int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME SE O CHUTE FOI PARA FORA:", "CONFIRMAÇÃO DE CHUTE PARA FORA", JOptionPane.YES_NO_OPTION);
-
         if (resposta == JOptionPane.YES_OPTION) {
             golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal());
 
@@ -328,10 +346,12 @@ public class DlgGol extends javax.swing.JDialog {
 
     private void jBtTipoChuteGolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteGolMouseClicked
         bloquearBotao(true);
+        mudarCorBotao(Color.GREEN);
     }//GEN-LAST:event_jBtTipoChuteGolMouseClicked
 
     private void jBtTipoChuteDefesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteDefesaMouseClicked
         bloquearBotao(true);
+        mudarCorBotao(Color.RED);
     }//GEN-LAST:event_jBtTipoChuteDefesaMouseClicked
 
     /**
