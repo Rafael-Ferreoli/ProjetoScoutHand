@@ -127,6 +127,7 @@ public class FrHome extends javax.swing.JFrame {
         jBtInicializarPartida = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jBtTutorial = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -201,6 +202,15 @@ public class FrHome extends javax.swing.JFrame {
             }
         });
 
+        jBtTutorial.setBackground(new java.awt.Color(255, 255, 0));
+        jBtTutorial.setForeground(new java.awt.Color(0, 0, 0));
+        jBtTutorial.setText("TUTORIAL");
+        jBtTutorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtTutorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,7 +235,8 @@ public class FrHome extends javax.swing.JFrame {
                             .addComponent(jTextField2)
                             .addComponent(jLabelPlacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jBtInicializarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtFinalizarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtFinalizarPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtTutorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,7 +266,9 @@ public class FrHome extends javax.swing.JFrame {
                 .addComponent(jBtInicializarPartida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtFinalizarPartida)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtTutorial)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,17 +281,21 @@ public class FrHome extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         String textoDigitado2 = jTextField2.getText();
-        if (validarNomesTimes(timeA, textoDigitado2)) {
-            timeB = textoDigitado2;
+        if (textoDigitado2.length() == 3 && validarNomesTimes(timeA, textoDigitado2)) {
+            timeA = textoDigitado2;
             jTextField2.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "O nome do time deve ter exatamente 3 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         String textoDigitado1 = jTextField1.getText();
-        if (validarNomesTimes(textoDigitado1, timeB)) {
-            timeA = textoDigitado1;
+        if (textoDigitado1.length() == 3 && validarNomesTimes(timeB, textoDigitado1)) {
+            timeB = textoDigitado1;
             jTextField1.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "O nome do time deve ter exatamente 3 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -327,6 +344,23 @@ public class FrHome extends javax.swing.JFrame {
         criarQuadra(timeA, nomeArquivo);
     }//GEN-LAST:event_jBtTimeAActionPerformed
 
+    private void jBtTutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtTutorialActionPerformed
+        JOptionPane.showMessageDialog(
+                this,
+                "1º SELECIONE OS NOMES DOS TIMES\n"
+                + "2º CLIQUE EM INICIALIZAR PARTIDA\n"
+                + "3º SELECIONE SE O CHUTE FOI DO TIME 'A' OU 'B' NOS BOTÕES CORRESPONDENTES\n"
+                + "4º SELECIONE DE QUE PARTE DA QUADRA O CHUTE FOI FEITO\n"
+                + "5º SELECIONE O NÚMERO DO JOGADOR QUE FEZ O CHUTE OU CANCELE O CHUTE CASO TENHA SIDO ENGANO\n"
+                + "6º COM O NÚMERO SELECIONADO, ESCOLHA O TIPO DE CHUTE, SE FOI 'DEFESA', 'GOL' OU 'FORA'\n"
+                + "7º SELECIONE EM QUAL QUADRANTE DO GOL A BOLA FOI DIRECIONADA\n"
+                + "8º CONFIRA OS DADOS E CONFIRME CASO ESTEJA CORRETO, SENÃO ESTIVER, APERTE 'NÃO' E REPITA O PROCESSO\n"
+                + "9º REPITA O PROCESSO CASO QUEIRA SALVAR MAIS CHUTES OU CLIQUE EM 'FINALIZAR PARTIDA' PARA GERAR O RELATÓRIO COM OS DADOS COLETADOS\n",
+                "TUTORIAL",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_jBtTutorialActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,6 +370,7 @@ public class FrHome extends javax.swing.JFrame {
     private javax.swing.JButton jBtInicializarPartida;
     private javax.swing.JButton jBtTimeA;
     private javax.swing.JButton jBtTimeB;
+    private javax.swing.JButton jBtTutorial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

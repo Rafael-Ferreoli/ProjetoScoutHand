@@ -15,13 +15,25 @@ import javax.swing.JOptionPane;
 public class DlgGol extends javax.swing.JDialog {
 
     private GolManager golManager;
+    private String[] numbers = generateNumberArray();
+    private String selectedNumber;
+    private int a;
 
     public DlgGol(boolean modal, String time, String quadranteChute, String nomeArquivo) {
         setTitle("CHUTE: " + quadranteChute);
         golManager = new GolManager(time, quadranteChute, nomeArquivo);
         initComponents();
         bloquearBotao(false);
+        bloquearBotaoTipo(false);
 
+    }
+
+    private String[] generateNumberArray() {
+        String[] numbers = new String[99];
+        for (int i = 0; i < 99; i++) {
+            numbers[i] = String.valueOf(i + 1);
+        }
+        return numbers;
     }
 
     private void mudarCorBotao(Color c) {
@@ -46,6 +58,12 @@ public class DlgGol extends javax.swing.JDialog {
         this.jBtQuadranteGol7.setEnabled(flag);
         this.jBtQuadranteGol8.setEnabled(flag);
         this.jBtQuadranteGol9.setEnabled(flag);
+    }
+
+    private void bloquearBotaoTipo(boolean flag) {
+        this.jBtTipoChuteDefesa.setEnabled(flag);
+        this.jBtTipoChuteGol.setEnabled(flag);
+        this.jBtTipoChuteFora.setEnabled(flag);
     }
 
     /**
@@ -75,6 +93,8 @@ public class DlgGol extends javax.swing.JDialog {
         jBtTipoChuteFora = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,6 +218,16 @@ public class DlgGol extends javax.swing.JDialog {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JOGADOR Nº:", "1", "2", "3", "..." }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(150, 33));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("NÚMERO DO JOGADOR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,7 +239,6 @@ public class DlgGol extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtTipoChuteFora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator2)
-            .addComponent(jSeparator3)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,10 +260,18 @@ public class DlgGol extends javax.swing.JDialog {
                         .addComponent(jBtQuadranteGol8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtQuadranteGol9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator3)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtCancelarGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,9 +299,15 @@ public class DlgGol extends javax.swing.JDialog {
                         .addComponent(jBtTipoChuteGol, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jBtTipoChuteDefesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtCancelarGol, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jBtCancelarGol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -273,47 +316,47 @@ public class DlgGol extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtQuadranteGol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol1ActionPerformed
-        golManager.verificarEExecutarAcao("Q1 GOL");
+        golManager.verificarEExecutarAcao("Q1 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol1ActionPerformed
 
     private void jBtQuadranteGol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol2ActionPerformed
-        golManager.verificarEExecutarAcao("Q2 GOL");
+        golManager.verificarEExecutarAcao("Q2 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol2ActionPerformed
 
     private void jBtQuadranteGol3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol3ActionPerformed
-        golManager.verificarEExecutarAcao("Q3 GOL");
+        golManager.verificarEExecutarAcao("Q3 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol3ActionPerformed
 
     private void jBtQuadranteGol4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol4ActionPerformed
-        golManager.verificarEExecutarAcao("Q4 GOL");
+        golManager.verificarEExecutarAcao("Q4 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol4ActionPerformed
 
     private void jBtQuadranteGol5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol5ActionPerformed
-        golManager.verificarEExecutarAcao("Q5 GOL");
+        golManager.verificarEExecutarAcao("Q5 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol5ActionPerformed
 
     private void jBtQuadranteGol6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol6ActionPerformed
-        golManager.verificarEExecutarAcao("Q6 GOL");
+        golManager.verificarEExecutarAcao("Q6 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol6ActionPerformed
 
     private void jBtQuadranteGol7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol7ActionPerformed
-        golManager.verificarEExecutarAcao("Q7 GOL");
+        golManager.verificarEExecutarAcao("Q7 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol7ActionPerformed
 
     private void jBtQuadranteGol8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol8ActionPerformed
-        golManager.verificarEExecutarAcao("Q8 GOL");
+        golManager.verificarEExecutarAcao("Q8 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol8ActionPerformed
 
     private void jBtQuadranteGol9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtQuadranteGol9ActionPerformed
-        golManager.verificarEExecutarAcao("Q9 GOL");
+        golManager.verificarEExecutarAcao("Q9 GOL", selectedNumber);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteGol9ActionPerformed
 
@@ -329,7 +372,7 @@ public class DlgGol extends javax.swing.JDialog {
         golManager.setTipoChute("FORA");
         int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME SE O CHUTE FOI PARA FORA:", "CONFIRMAÇÃO DE CHUTE PARA FORA", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
-            golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal());
+            golManager.salvarQuadranteChute(golManager.getQuadranteChuteFinal(), selectedNumber);
 
             this.setVisible(false);
         }
@@ -345,19 +388,41 @@ public class DlgGol extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtCancelarGolActionPerformed
 
     private void jBtTipoChuteGolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteGolMouseClicked
+        if (jBtTipoChuteGol.isEnabled()) {
         bloquearBotao(true);
         mudarCorBotao(Color.GREEN);
+    }
     }//GEN-LAST:event_jBtTipoChuteGolMouseClicked
 
     private void jBtTipoChuteDefesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtTipoChuteDefesaMouseClicked
+        if (jBtTipoChuteDefesa.isEnabled()) {
         bloquearBotao(true);
         mudarCorBotao(Color.RED);
+    }
     }//GEN-LAST:event_jBtTipoChuteDefesaMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        selectedNumber = (String) JOptionPane.showInputDialog(
+                this,
+                "SELECIONE O NÚMERO DO JOGADOR QUE FEZ O CHUTE:",
+                "SELEÇÃO DE NÚMEROS",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                numbers,
+                numbers[0]
+        );
+        if (selectedNumber != null) {
+            int resposta = JOptionPane.showConfirmDialog(this, "CONFIRME O NÚMERO SELECIONADO: " + selectedNumber, "NÚMERO SELECIONADO", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                bloquearBotaoTipo(true);
+                jComboBox1.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtCancelarGol;
     private javax.swing.JButton jBtQuadranteGol1;
@@ -372,6 +437,8 @@ public class DlgGol extends javax.swing.JDialog {
     private javax.swing.JButton jBtTipoChuteDefesa;
     private javax.swing.JButton jBtTipoChuteFora;
     private javax.swing.JButton jBtTipoChuteGol;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

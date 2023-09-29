@@ -53,9 +53,9 @@ public class GolManager {
         return quadranteChuteFinal;
     }
 
-    public void verificarEExecutarAcao(String quadrante) {
+    public void verificarEExecutarAcao(String quadrante, String numJogador) {
         if (!acaoExecutada) {
-            criarInformacaoGol(quadrante);
+            criarInformacaoGol(quadrante,numJogador);
             acaoExecutada = true;
         }
     }
@@ -66,9 +66,9 @@ public class GolManager {
         return agora.format(formato);
     }
 
-    private String formatarInformacaoGol(String quadranteGol) {
+    private String formatarInformacaoGol(String quadranteGol, String numJogador) {
         String horaAtual = obterHoraAtual();
-        String informacao = "HORA: " + horaAtual + " - TIME: " + timeFinal + " - TIPO CHUTE: ";
+        String informacao = "HORA: " + horaAtual + " - TIME: " + timeFinal + " - JOGADOR Nº: " + numJogador + " - TIPO CHUTE: ";
 
         if (getTipoChuteSelecionado().equals("GOL") || getTipoChuteSelecionado().equals("DEFESA")) {
             informacao += getTipoChuteSelecionado() + " -> " + quadranteChuteFinal + " -> " + quadranteGol;
@@ -79,9 +79,9 @@ public class GolManager {
         return informacao;
     }
 
-    private void criarInformacaoGol(String quadranteGol) {
+    private void criarInformacaoGol(String quadranteGol, String numJogador) {
         //contador(getTipoChuteSelecionado());
-        String mensagemConfirmacao = "CONFIRME A INFORMAÇÃO:\nTIPO CHUTE: " + getTipoChuteSelecionado() + "\nQUADRANTE CHUTE: " + quadranteChuteFinal;
+        String mensagemConfirmacao = "CONFIRME A INFORMAÇÃO:\n TIME: " + timeFinal + "\nJOGADOR Nº: " + numJogador + "\nTIPO CHUTE: " + getTipoChuteSelecionado() + "\nQUADRANTE CHUTE: " + quadranteChuteFinal;
 
         if (getTipoChuteSelecionado().equals("GOL") || getTipoChuteSelecionado().equals("DEFESA")) {
             mensagemConfirmacao += "\nQUADRANTE GOL: " + quadranteGol;
@@ -90,16 +90,16 @@ public class GolManager {
         int resposta = JOptionPane.showConfirmDialog(null, mensagemConfirmacao, "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
-            String informacaoGol = formatarInformacaoGol(quadranteGol);
+            String informacaoGol = formatarInformacaoGol(quadranteGol,numJogador);
             informacoesGols.add(informacaoGol);
             escreverInformacoesEmArquivo(nomeArquivo);
             acaoExecutada = true;
         }
     }
 
-    public void salvarQuadranteChute(String quadranteChute) {
+    public void salvarQuadranteChute(String quadranteChute, String numJogador) {
         //contador(getTipoChuteSelecionado());
-        String informacao = formatarInformacaoGol(quadranteChute);
+        String informacao = formatarInformacaoGol(quadranteChute,numJogador);
         informacoesGols.add(informacao);
         escreverInformacoesEmArquivo(nomeArquivo);
     }
@@ -260,7 +260,7 @@ public class GolManager {
                 }
             }
 
-            String parA1 = Q1AGol + "/" + (Q1ADefesa + Q2AGol);
+            String parA1 = Q1AGol + "/" + (Q1ADefesa + Q1AGol);
             paresVariaveisA.add(parA1);
             String parA2 = Q2AGol + "/" + (Q2ADefesa + Q2AGol);
             paresVariaveisA.add(parA2);

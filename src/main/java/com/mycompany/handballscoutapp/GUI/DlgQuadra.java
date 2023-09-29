@@ -46,148 +46,76 @@ public class DlgQuadra extends javax.swing.JDialog {
         setModal(true);
         setResizable(false);
 
+        jBtQuadranteQuadra1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q1.png"))); // NOI18N
         jBtQuadranteQuadra1.setText("Q1 QUADRA");
-        jBtQuadranteQuadra1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra1AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra1ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q2.png"))); // NOI18N
         jBtQuadranteQuadra2.setText("Q2 QUADRA");
-        jBtQuadranteQuadra2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra2AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra2ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q3.png"))); // NOI18N
         jBtQuadranteQuadra3.setText("Q3 QUADRA");
-        jBtQuadranteQuadra3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra3AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra3ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q4.png"))); // NOI18N
         jBtQuadranteQuadra4.setText("Q4 QUADRA");
-        jBtQuadranteQuadra4.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra4AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra4ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q5.png"))); // NOI18N
         jBtQuadranteQuadra5.setText("Q5 QUADRA");
-        jBtQuadranteQuadra5.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra5AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra5ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q6.png"))); // NOI18N
         jBtQuadranteQuadra6.setText("Q6 QUADRA");
         jBtQuadranteQuadra6.setPreferredSize(new java.awt.Dimension(160, 50));
-        jBtQuadranteQuadra6.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra6AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra6ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q7.png"))); // NOI18N
         jBtQuadranteQuadra7.setText("Q7 QUADRA");
         jBtQuadranteQuadra7.setPreferredSize(new java.awt.Dimension(160, 50));
-        jBtQuadranteQuadra7.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra7AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra7ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q8.png"))); // NOI18N
         jBtQuadranteQuadra8.setText("Q8 QUADRA");
         jBtQuadranteQuadra8.setPreferredSize(new java.awt.Dimension(162, 50));
-        jBtQuadranteQuadra8.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra8AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra8ActionPerformed(evt);
             }
         });
 
+        jBtQuadranteQuadra9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/QUADRA Q9.png"))); // NOI18N
         jBtQuadranteQuadra9.setText("Q9 QUADRA");
         jBtQuadranteQuadra9.setPreferredSize(new java.awt.Dimension(490, 50));
-        jBtQuadranteQuadra9.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jBtQuadranteQuadra9AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jBtQuadranteQuadra9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtQuadranteQuadra9ActionPerformed(evt);
@@ -285,51 +213,6 @@ public class DlgQuadra extends javax.swing.JDialog {
         quadraManager.criarGol("Q9 QUADRA", nomeArquivoFinal);
         setVisible(false);
     }//GEN-LAST:event_jBtQuadranteQuadra9ActionPerformed
-
-    private void jBtQuadranteQuadra1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra1AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q1.png");
-        jBtQuadranteQuadra1.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra1AncestorAdded
-
-    private void jBtQuadranteQuadra2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra2AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q2.png");
-        jBtQuadranteQuadra2.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra2AncestorAdded
-
-    private void jBtQuadranteQuadra3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra3AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q3.png");
-        jBtQuadranteQuadra3.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra3AncestorAdded
-
-    private void jBtQuadranteQuadra4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra4AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q4.png");
-        jBtQuadranteQuadra4.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra4AncestorAdded
-
-    private void jBtQuadranteQuadra5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra5AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q5.png");
-        jBtQuadranteQuadra5.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra5AncestorAdded
-
-    private void jBtQuadranteQuadra6AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra6AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q6.png");
-        jBtQuadranteQuadra6.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra6AncestorAdded
-
-    private void jBtQuadranteQuadra7AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra7AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q7.png");
-        jBtQuadranteQuadra7.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra7AncestorAdded
-
-    private void jBtQuadranteQuadra8AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra8AncestorAdded
-       ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q8.png");
-        jBtQuadranteQuadra8.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra8AncestorAdded
-
-    private void jBtQuadranteQuadra9AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jBtQuadranteQuadra9AncestorAdded
-        ImageIcon icon = new ImageIcon("C:\\Users\\rafae\\OneDrive\\Documentos\\NetBeansProjects\\HandballScoutApp\\src\\main\\java\\com\\mycompany\\handballscoutapp\\imagens\\QUADRA Q9.png");
-        jBtQuadranteQuadra9.setIcon(icon);
-    }//GEN-LAST:event_jBtQuadranteQuadra9AncestorAdded
 
     /**
      * @param args the command line arguments
